@@ -194,9 +194,9 @@ class Predictor(BasePredictor):
             default=1.0,
             description="Max gradient norm.",
         ),
-        ckpt_base: Path = Input(
-            description="A ckpt file with existing training base",
-        ),
+        # ckpt_base: Path = Input(
+        #     description="A ckpt file with existing training base",
+        # ),
         # save_interval: int = Input(
         #     default=10000,
         #     description="Save weights every N steps.",
@@ -243,12 +243,12 @@ class Predictor(BasePredictor):
         pretrained_model_name_or_path = "runwayml/stable-diffusion-v1-5"
         pretrained_vae_name_or_path = "runwayml/stable-diffusion-v1-5"
 
-        if ckpt_base is not None:
-            run_cmd(
-                f"python convert_original_stable_diffusion_to_diffusers.py --checkpoint_path {ckpt_base} --dump_path {cog_custom_base_data}"
-            )
-            pretrained_model_name_or_path = cog_custom_base_data
-            pretrained_vae_name_or_path = f"{cog_custom_base_data}/vae"
+        # if ckpt_base is not None:
+        #     run_cmd(
+        #         f"python convert_original_stable_diffusion_to_diffusers.py --checkpoint_path {ckpt_base} --dump_path {cog_custom_base_data}"
+        #     )
+        #     pretrained_model_name_or_path = cog_custom_base_data
+        #     pretrained_vae_name_or_path = f"{cog_custom_base_data}/vae"
 
         # some settings are fixed for the replicate model
         args = {
