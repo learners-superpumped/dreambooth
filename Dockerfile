@@ -43,5 +43,9 @@ RUN --mount=type=cache,target=/root/.cache/pip pip install /tmp/cog-0.0.1.dev-py
 COPY requirements.txt /tmp/requirements.txt
 RUN --mount=type=cache,target=/root/.cache/pip pip install -r /tmp/requirements.txt
 WORKDIR /src
+COPY script/download-weights /tmp/download-weights
+RUN /tmp/download-weights
+COPY cog.yaml /src
+COPY *.py /src
 EXPOSE 5000
 CMD ["python", "-m", "cog.server.http"]
